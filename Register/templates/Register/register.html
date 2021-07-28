@@ -1,0 +1,67 @@
+{%load static%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login/SignUp</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'Register/css/Login.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+
+    <body>
+    <div class="main"> 	
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            <label for="chk" aria-hidden="true">Sign up</label>
+                    <div class="input">
+                        {{form.username}}
+                    </div>
+                    <div class="input">
+                        {{form.email}}
+                    </div>
+                    <div class="input">
+                        {{form.password1}}
+                    </div>
+                    <div class="input">
+                        {{form.password2}}
+                    </div>
+                    
+            <button type="submit" class="btn btn-success"> Register </button>
+        </form>
+        <div class="error">
+            {{form.errors}}
+        </div>
+      
+        </div>
+        <style>
+            .main{
+        width: 350px;
+        height: 500px;
+        background:red;
+        overflow: hidden;
+        background: url("{%static 'Register/images/1.jpg'%}") no-repeat center/ cover;
+        border-radius: 10px;
+        box-shadow: 5px 20px 50px #000;
+    }
+    .error{
+        color:#ffffff;
+        align-items: center;
+    }
+        </style>
+        
+        <script>
+
+            var form_fields = document.getElementsByTagName('input')
+            form_fields[2].placeholder='Username..';
+            form_fields[3].placeholder='Email..';
+            form_fields[4].placeholder='Enter password...';
+            form_fields[5].placeholder='Re-enter Password...';
+            
+            </script>
+
+    </body>
+</html>

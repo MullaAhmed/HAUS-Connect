@@ -1,0 +1,22 @@
+1. in urls file of the main project
+
+from Register import views as v
+in url patterns
+path('register/',v.register,name="register"),
+
+2. in settings.py of main project
+'Register.apps.RegisterConfig',
+
+3. Edit forms.py to edit the form for more feilds
+
+for login
+4.in main project settigs.py
+path("",include("django.contrib.auth.urls")),
+
+5.{% if user.is_authenticated %}
+            {% block content %} 
+            {{text}}
+            {% endblock %}
+        {% else %}
+        <p><a href="/login"> Login Here</a></p>
+        {% endif %}

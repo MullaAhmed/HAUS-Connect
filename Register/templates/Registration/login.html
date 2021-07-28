@@ -1,0 +1,99 @@
+{%load static%}
+{% if user.is_authenticated %}
+  <html>
+    <head>
+        <title>
+            {% block title %}Please Login {% endblock %}
+        </title>
+    </head>
+
+    <body class="main">
+        <h1 class="ml5">
+            <span class="text-wrapper">
+              <span class="line line1"></span>
+              <span class="letters letters-left">HAUS</span>
+              <span class="letters ampersand">~</span>
+              <span class="letters letters-right">Connect</span>
+              <span class="line line2"></span>
+            </span>
+          </h1>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>        
+        
+        <center><p style="color:#f2f2f4">You are already logged in</p>  
+        <center>  <h2 style="color:#f2f2f4"><a href="/" style="color:#f2f2f4">Click here</a> if you are a professor</h2>
+        <center>  <h2 style="color:#f2f2f4"><a href="/student_home" style="color:#f2f2f4">Click here</a> if you are a student</h2>
+        
+    </body>
+    <link rel="stylesheet" href="{% static 'Teacher/css/base.css' %}">
+    <script type="text/javascript" src="{% static 'Teacher/js/base.js' %}"></script>
+    <style>
+        .main{
+  background:  url("{%static 'Register/images/1.jpg'%}") no-repeat center/ cover;
+            }
+    </style>
+</html>
+
+{% else %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login/SignUp</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'Register/css/Login.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+
+    <body>
+    <div class="main"> 	
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            <label for="chk" aria-hidden="true">Login</label>
+                    <div class="input">
+                        {{form.username}}
+                    </div>
+                    <div class="input">
+                        {{form.password}}
+                    </div>
+                    
+            <button type="submit" class="btn btn-success"> Login </button>
+        </form>
+
+        <div class="error">
+            {{form.errors}}
+           <center> <p>Dont have an account? create one <a href="{% url 'register'%}" style="color:white">here</a></p>
+        </div>
+      
+        </div>
+        
+        <style>
+            .main{
+        width: 350px;
+        height: 500px;
+        background:red;
+        overflow: hidden;
+        background: url("{%static 'Register/images/1.jpg'%}") no-repeat center/ cover;
+        border-radius: 10px;
+        box-shadow: 5px 20px 50px #000;
+    }
+    .error{
+        color:#ffffff;
+        align-items: center;
+    }
+        </style>
+        
+        <script>
+
+            var form_fields = document.getElementsByTagName('input')
+            form_fields[].placeholder='Username..';
+            form_fields[].placeholder='Enter password...';
+                
+            }
+            </script>
+
+    </body>
+</html>
+{% endif %}
