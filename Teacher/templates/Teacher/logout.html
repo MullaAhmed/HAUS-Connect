@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>
+            Login here
+        </title>
+    </head>
+{% load crispy_forms_tags %}
+
+    <body>
+        <h1>Register Here</h1>
+
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success"> Log in </button>
+            
+            <p>Dont have an account? Create one <a href="/register">here <a></p>
+        </form>
+    </body>
+</html>
