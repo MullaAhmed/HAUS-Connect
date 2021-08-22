@@ -130,22 +130,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-try:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATIC_URL = '/static/'
-
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
- except:
-    STATIC_URL = '/static/'
-    if DEBUG:
-        STATICFILES_DIRS = [
-            os.path.join(BASE_DIR, 'broadcaster/static').replace('\\', '/')
-        ]
-    else:
-        STATIC_ROOT = os.path.join(BASE_DIR, 'broadcaster/static').replace('\\', '/')
 
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
