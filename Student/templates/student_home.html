@@ -1,0 +1,404 @@
+{% load static %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student's Portal</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Roboto Condensed", sans-serif;
+        line-height: 1.7;
+        perspective-origin: 0% 50%;
+        perspective: 800px;
+        background: #21212d;
+      }
+      nav,
+      main {
+        transition: transform 150ms ease-out;
+      }
+      nav {
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 16em;
+        background-color: #353441;
+        transform: translateX(-16em);
+      }
+      nav.menu-active {
+        transform: translateX(0);
+      }
+      nav.menu-hover {
+        transform: translateX(-15em);
+      }
+      nav h1 {
+        z-index: 100;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -65px;
+        height: 60px;
+        width: 65px;
+        line-height: 60px;
+        font-size: 0.8em;
+        font-weight: 300;
+        letter-spacing: 1px;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        background-color: #353441;
+        cursor: pointer;
+      }
+      nav h1:hover {
+        color: #353441;
+        background: #fff;
+      }
+      nav ul {
+        margin: 0;
+        padding: 0;
+      }
+      nav li {
+        display: inline-block;
+        padding: 0 1em;
+        width: 100%;
+        height: 60px;
+        color: #9dc6d1;
+        line-height: 60px;
+        background-color: #353441;
+        transition: all 0.5s ease-in;
+      }
+      nav li:nth-of-type(2n) {
+        background-color: #3a3947;
+      }
+      nav li:hover {
+        background: #6d44b8;
+        color: rgb(255, 255, 255);
+      }
+      main {
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background-image: url("{% static 'image/1.jpg' %}");
+        transform-origin: 0% 50%;
+        background-size: 35%;
+        width: 100%;
+      }
+      main:after {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(33, 33, 45, 0.5)
+        );
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 150ms ease-out, visibility 0s 150ms;
+      }
+      main.menu-active {
+        border-radius: 0.001px;
+        transform: translateX(16em) rotateY(15deg);
+      }
+      main.menu-active:after {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 150ms ease-out, visibility 0s;
+      }
+      main.menu-hover {
+        border-radius: 0.001px;
+        transform: translateX(1em) rotateY(1deg);
+      }
+      main section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        padding: 1em 4em;
+        max-width: 680px;
+        overflow: auto;
+        background-color: rgba(255, 255, 255, 0.753);
+      }
+      section h1 {
+        font-weight: 800;
+
+        font-size: 2em;
+      }
+      section p {
+        display: inline-block;
+        margin: 16px 0;
+      }
+      nav h1 button {
+        cursor: pointer;
+        position: absolute;
+        top: -17px;
+        left: 30%;
+        height: 100px;
+        background-color: transparent;
+        border: 0;
+        font-size: 26px;
+        color: #fff;
+      }
+
+      nav h1 button:hover {
+        color: #353441;
+      }
+
+      .logo {
+        z-index: 1;
+        position: absolute;
+        width: 150px;
+        top: 0;
+        left: 82%;
+      }
+
+      .box {
+        display: flex;
+        border: 2px solid black;
+        height: 50vh;
+        border-radius: 5px;
+        box-shadow: 5px 20px 50px #000;
+        padding-bottom: 2rem;
+      }
+
+
+      h3 {
+        margin: 15px;
+        padding-top: 1rem;
+      }
+ 
+      .copyright{
+        margin-top: 2rem;
+        font-family: sans-serif;
+        text-align: center;
+      }
+      .copyright hr{
+        background-color: black;
+      }
+
+      
+
+     
+    </style>
+  </head>
+  <body>
+    <nav class="menu-activea">
+      <h1 class="hamb">
+        <button id="open">
+          <i class="fas fa-bars"></i>
+        </button>
+      </h1>
+      <ul>
+         
+        <a href="{% url 'ChatBot'%}" rel="noopener noreferrer" style="text-decoration:none ;color: #fff; " >
+        <li  style="cursor: pointer">
+          CHATBOT
+        </li>
+        </a>
+
+        <li
+          onclick="location.href=' https://drive.google.com/drive/folders/13aPy9KoDX3AWbkeech2AK-EBitiXEcNT';"
+          style="cursor: pointer">
+          NOTES
+        </li>
+
+        <a  href="{% url 'TimeTable'%}" rel="noopener noreferrer" style="text-decoration:none;color: #fff; ">
+        <li style="cursor: pointer">
+         TIMETABLE
+        </li>
+      </a>
+
+      <a  href="{% url 'Result'%}" rel="noopener noreferrer" style="text-decoration:none ;color: #fff; ">
+        <li  style="cursor: pointer">
+          RESULT 
+        </li>
+      </a>
+
+      <a href="{% url 'About'%}" rel="noopener noreferrer" style="text-decoration:none ;color: #fff; ">
+        <li>
+          ABOUT
+            
+          </li>
+        </a>
+
+        <a  href="{% url 'FAQ'%}" rel="noopener noreferrer" style="text-decoration:none ;color: #fff; ">
+        <li style="cursor: pointer">
+        FAQ
+        </li>
+      </a>
+
+      <a  href="{% url 'logout'%}" rel="noopener noreferrer" style="text-decoration:none ;color: #fff;">
+        <li style="cursor: pointer">
+          LOGOUT
+        </li>
+      </a>
+
+      </ul>
+    </nav>
+    <main>
+      <img class="logo" src="{% static 'image/HAUS.png' %}" >
+      <section>
+        <br /><br /><br />
+        <h1>HAUS-Connect</h1>
+        <small>Student's Portal</small>
+        <br />
+
+        <div class="container">
+          <p>
+            HAUS-Connect is  platform where all the faculties can send notice,Schedule Exam and Schedule Lectures. Any action performed by faculty will send a text message to all the students informing them about any upcoming events. HAUS-Connect aims to decrease the ridge between Student and Faculty.It is a firm of the Students,by the Students, for the Students.
+          </p>
+        </div>
+
+        <div class="container">
+          <h3>Announcement </h3>
+          <div class="box">
+          <center>
+            {% for t in t1 %}
+           {{ t }}<br>
+           {% endfor %}
+          </center>
+          </div>
+        </div>
+
+        <div class="container">
+          <h3>Lectures</h3>
+          <div class="box">
+            {% for t in t2 %}
+            You have a {{t.subject}}
+            extra class on {{t.date}}
+            from {{t.time_start}}
+            to {{t.time_end}}
+            <br>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="container">
+          <h3>Exam</h3>
+          <div class="box">
+            {% for t in t3 %}
+            You have a {{t.subject}}
+            extra class on {{t.date}}
+            from {{t.time_start}}
+            to {{t.time_end}}
+            <br>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="copyright">
+          <hr>
+          <h3>
+            © 2021 HAUS - All Rights Reserved
+          </h3>
+        </div> 
+
+       
+      </section>
+    </main>
+    <script>
+      (function () {
+        var nav = $("nav"),
+          menu = $("nav h1"),
+          main = $("main"),
+          open = false,
+          hover = false;
+
+        menu.on("click", function () {
+          open = !open ? true : false;
+          nav.toggleClass("menu-active");
+          main.toggleClass("menu-active");
+          nav.removeClass("menu-hover");
+          main.removeClass("menu-hover");
+          console.log(open);
+        });
+        menu.hover(
+          function () {
+            if (!open) {
+              nav.addClass("menu-hover");
+              main.addClass("menu-hover");
+            }
+          },
+          function () {
+            nav.removeClass("menu-hover");
+            main.removeClass("menu-hover");
+          }
+        );
+      })();
+    </script>
+
+  </body>
+</html>
+{% else %}
+  
+  <html>
+      <head>
+          <title>
+              {% block title %}Please Login {% endblock %}
+          </title>
+      </head>
+  
+      <body class="main">
+          <h1 class="ml5">
+              <span class="text-wrapper">
+                <span class="line line1"></span>
+                <span class="letters letters-left">HAUS</span>
+                <span class="letters ampersand">~</span>
+                <span class="letters letters-right">Connect</span>
+                <span class="line line2"></span>
+              </span>
+            </h1>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>        
+          
+          <center><p style="color:#f2f2f4">Sadly you are not logged in</p>  
+          <center>  <h2><a href="/login" style="color:#f2f2f4"> Login Here</a></h2>
+          
+      </body>
+      <link rel="stylesheet" href="{% static 'Teacher/css/base.css' %}">
+      <script type="text/javascript" src="{% static 'Teacher/js/base.js' %}"></script>
+      <style>
+          .main{
+    background:  url("{%static 'Register/images/1.jpg'%}") no-repeat center/ cover;
+              }
+      </style>
+      
+  </html>
+  
+  
+  {% endif %} 
+
+

@@ -1,0 +1,74 @@
+{% load static %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <link rel="stylesheet" href="{% static 'css/ChatBot.css' %}">
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <main>
+        <section>
+          <br /><br /><br />
+          <h1>ChatBot</h1>
+          <small>Hi I am Era</small>
+          <br />
+          <p>
+           Under Construction
+          </p>
+  
+         
+        </section>
+      </main>
+<style>
+  main{
+   background-image: url("{% static 'image/1.jpg' %}");
+  }
+</style>
+</body>
+</html>
+{% else %}
+  
+  <html>
+      <head>
+          <title>
+              {% block title %}Please Login {% endblock %}
+          </title>
+      </head>
+  
+      <body class="main">
+          <h1 class="ml5">
+              <span class="text-wrapper">
+                <span class="line line1"></span>
+                <span class="letters letters-left">HAUS</span>
+                <span class="letters ampersand">~</span>
+                <span class="letters letters-right">Connect</span>
+                <span class="line line2"></span>
+              </span>
+            </h1>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>        
+          
+          <center><p style="color:#f2f2f4">Sadly you are not logged in</p>  
+          <center>  <h2><a href="/login" style="color:#f2f2f4"> Login Here</a></h2>
+          
+      </body>
+      <link rel="stylesheet" href="{% static 'Teacher/css/base.css' %}">
+      <script type="text/javascript" src="{% static 'Teacher/js/base.js' %}"></script>
+      <style>
+          .main{
+    background:  url("{%static 'Register/images/1.jpg'%}") no-repeat center/ cover;
+              }
+      </style>
+      
+  </html>
+  
+  
+  {% endif %} 

@@ -1,0 +1,129 @@
+{% load static %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i"
+    rel="stylesheet"
+  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}" />
+    <title>FAQ</title>
+  </head>
+  <body>
+    <h1>Frequently Asked Questions</h1>
+    <div class="faq-container">
+      <div class="faq active">
+        <h3 class="faq-title">
+          Why shouldn't we trust atoms?
+        </h3>
+
+        <p class="faq-text">
+          They make up everything
+        </p>
+
+        <button class="faq-toggle">
+          <i class="fas fa-chevron-down"></i>
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="faq">
+        <h3 class="faq-title">
+          What do you call someone with no body and no nose?
+        </h3>
+        <p class="faq-text">
+          Nobody knows.
+        </p>
+        <button class="faq-toggle">
+          <i class="fas fa-chevron-down"></i>
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="faq">
+        <h3 class="faq-title">
+          What's the object-oriented way to become wealthy?
+        </h3>
+        <p class="faq-text">
+          Inheritance.
+        </p>
+        <button class="faq-toggle">
+          <i class="fas fa-chevron-down"></i>
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="faq">
+        <h3 class="faq-title">
+          How many tickles does it take to tickle an octopus?
+        </h3>
+        <p class="faq-text">
+          Ten-tickles!
+        </p>
+        <button class="faq-toggle">
+          <i class="fas fa-chevron-down"></i>
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="faq">
+        <h3 class="faq-title">
+          What is: 1 + 1?
+        </h3>
+        <p class="faq-text">
+          Depends on who are you asking.
+        </p>
+        <button class="faq-toggle">
+          <i class="fas fa-chevron-down"></i>
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <script src="{% static 'js/faq.js' %}"></script>
+    <style>
+      body{
+        background:  url("{%static 'image/1.jpg'%}") no-repeat center/ cover;}
+      </style>
+  </body>
+</html>
+{% else %}
+  
+  <html>
+      <head>
+          <title>
+              {% block title %}Please Login {% endblock %}
+          </title>
+      </head>
+  
+      <body class="main">
+          <h1 class="ml5">
+              <span class="text-wrapper">
+                <span class="line line1"></span>
+                <span class="letters letters-left">HAUS</span>
+                <span class="letters ampersand">~</span>
+                <span class="letters letters-right">Connect</span>
+                <span class="line line2"></span>
+              </span>
+            </h1>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>        
+          
+          <center><p style="color:#f2f2f4">Sadly you are not logged in</p>  
+          <center>  <h2><a href="/login" style="color:#f2f2f4"> Login Here</a></h2>
+          
+      </body>
+      <link rel="stylesheet" href="{% static 'Teacher/css/base.css' %}">
+      <script type="text/javascript" src="{% static 'Teacher/js/base.js' %}"></script>
+      <style>
+          .main{
+    background:  url("{%static 'Register/images/1.jpg'%}") no-repeat center/ cover;
+              }
+      </style>
+      
+  </html>
+  
+  
+  {% endif %} 
