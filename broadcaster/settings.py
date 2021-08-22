@@ -130,12 +130,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 if DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'broadcaster/static').replace('\\', '/')
-    
-else:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'broadcaster/static').replace('\\', '/')
     ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'broadcaster/static').replace('\\', '/')
     
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
